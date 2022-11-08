@@ -146,17 +146,18 @@ class Calculator extends React.Component {
                         input: state.input ? (parseInt(state.input || 0) * -1).toString() : '-' 
                     }))
                     break;
+               
                 case '+':
-                case '-':
                 case '*':
                 case '/':
-                    if(this.state.input){
+                    if(this.state.input && this.state.input != '-' ){
                         this.setFormula(e.target.value)
-                    }else if(e.target.value =='-'){
+                    }else if(this.state.input =='-'){
+                        this.setState({input:''})
                         this.setState(state=>({
-                            input: '-'
+                            formula: state.formula.slice(0,state.formula.length-1)+e.target.value
                         }))
-                    }else{ 
+                    }else{
                         //remove the last operator added to formula and add the new one
                         this.setState(state=>({
                             formula: state.formula.slice(0,state.formula.length-1)+e.target.value
@@ -168,6 +169,15 @@ class Calculator extends React.Component {
                         input: !state.input.includes('.') ? state.input + '.' : state.input
                     }))
                     break;
+                case '-':
+                        if (!this.state.input) {
+                            this.setState(state=>({
+                                input: state.input ? (parseInt(state.input || 0) * -1).toString() : '-' 
+                            }))
+                        }else{
+                            this.setFormula(e.target.value)
+                        }
+                        break
                 case 'C':
                     this.setState({
                         input: '',
