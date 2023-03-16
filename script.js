@@ -8,7 +8,7 @@ why rewrite a math parser for the millionth time
 ##################################################################
 ---------------------------------------------------------------*/
 
-
+// Handled by babel
 // import CalculatorBody from "./calculator-body"
 // import React from "react"
 // import math from "./math.js"
@@ -69,7 +69,7 @@ class CalculatorBody extends React.Component {
                 
                 <button id="clear"      className='red'     type="button" onClick={this.props.handleClick} value='C'>C</button>
                 <button id="square"     className='func'    type="button" onClick={this.props.handleClick} value='^'>x^</button>
-                <button id="root"       className='func'    type="button" onClick={this.props.handleClick} value='sqrt()'>sq(x)</button>
+                <button id="sqroot"     className='func'    type="button" onClick={this.props.handleClick} value='sqrt()'>sq(x)</button>
                 <button id="divide"     className='func'    type="button" onClick={this.props.handleClick} value='/'>/</button>
                 
                 <button id="seven"      className='number'  type="button" onClick={this.props.handleClick} value='7'>7</button>
@@ -190,6 +190,17 @@ class Calculator extends React.Component {
                         formula: ''
                     }))
                     break;
+                case 'sqrt()':
+                    this.setState(state=>({
+                        input: (math.sqrt(this.state.input)),
+                        formula: this.state.formula
+                    }))
+                    break;
+                case '^':
+                    this.setState(state=>({
+                        // input: (math.pow(this.state.input, this.state.input)),
+                        // formula: this.state.formula
+                    }))
             }
         }
 
@@ -206,7 +217,7 @@ class Calculator extends React.Component {
     }
     }
 
-
+//This is typically in App.js
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
         <div >
