@@ -94,7 +94,7 @@ class CalculatorBody extends React.Component {
                 <button id="decimal"    className='func'    type="button" onClick={this.props.handleClick} value='.'>.</button>
                 <button id="equals"     className='equals'  type="button" onClick={this.props.handleClick} value='equals'>=</button>
             </div>
-                    )
+        )
     }
 
 }
@@ -150,6 +150,7 @@ class Calculator extends React.Component {
                 case '+':
                 case '*':
                 case '/':
+                case '^':
                     if(this.state.input && this.state.input != '-' ){
                         this.setFormula(e.target.value)
                     }else if(this.state.input =='-'){
@@ -196,11 +197,7 @@ class Calculator extends React.Component {
                         formula: this.state.formula
                     }))
                     break;
-                case '^':
-                    this.setState(state=>({
-                        // input: (math.pow(this.state.input, this.state.input)),
-                        // formula: this.state.formula
-                    }))
+                
             }
         }
 
